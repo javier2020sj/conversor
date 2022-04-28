@@ -1,0 +1,46 @@
+
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Conversor de monedas
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Blank</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container" slot="">
+    <form [formGroup]="formulario" (ngSubmit)="calcular()" novalidate>
+      <ion-item>
+        <ion-label >{{lblCantidad}}</ion-label>
+        <ion-input formControlName="txtCantidad" type="number" value=""></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Desde la divisa</ion-label>
+        <ion-select formControlName="selDesde" placeholder="Seleccionar" (ngModelChange)="selDesdeChange()">
+          <ion-select-option   *ngFor="let moneda of arrayMonedas" value="{{moneda[0]}}">{{moneda[0]}} - {{moneda[1]}}</ion-select-option>
+        </ion-select>    
+      
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">A la divisa</ion-label>
+        <ion-select formControlName="selHacia" placeholder="Seleccionar" (ngModelChange)="selHaciaChange()">
+            <ion-select-option *ngFor="let moneda of arrayMonedas"  value="{{moneda[0]}}">{{moneda[0]}} - {{moneda[1]}}</ion-select-option>
+        </ion-select>    
+      </ion-item>
+
+      <ion-item>
+        <ion-button type="submit" expand="block">Calcular</ion-button>
+      </ion-item>
+      <ion-item>
+        <ion-label >{{lblTotal}}</ion-label>
+        <ion-input formControlName="txtTotal" type="number" readonly="true" value=""></ion-input>
+      </ion-item>
+    </form>
+  </div>
+</ion-content>
